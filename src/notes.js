@@ -42,24 +42,22 @@ const removeNote = (title, filename) => {
 };
 
 //===========================Listing Note=============
-const listNotes = () => {
-  const notes = loadNotes();
-  notes.forEach((note) => {
-    console.log(chalk.yellowBright.bold(note.title));
+const listNotes = (filename) => {
+  const notes = loadNotes(filename);
+  return notes.map((note) => {
+    return note.title;
   });
 };
 
 //============================READ Notes============================
-const readNotes = (title) => {
-  const notes = loadNotes();
+const readNotes = (title, filename) => {
+  const notes = loadNotes(filename);
   const note = notes.find((note) => note.title === title);
 
   if (note) {
-    console.log(chalk.inverse(note.title));
-    console.log(chalk.green.inverse(note.body));
+    return note;
   } else {
-    console.log(chalk.red.bold('Notes Not Found'));
-    // return 'Notes not Found';
+    return 'Notes Not Found';
   }
 };
 

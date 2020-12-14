@@ -39,4 +39,26 @@ describe('notesTest', () => {
       assert.equal(actual, expected);
     });
   });
+
+  describe('listNotes', () => {
+    beforeEach(() => {
+      fs.writeFileSync(fileName, '[{"title": "title","body": "body"}]');
+    });
+    it('should return the list of titles', () => {
+      const actual = notes.listNotes(fileName);
+      const expected = ['title'];
+      assert.deepEqual(actual, expected);
+    });
+  });
+
+  describe('readNotes', () => {
+    beforeEach(() => {
+      fs.writeFileSync(fileName, '[{"title": "title","body": "body"}]');
+    });
+    it('Should read the notes of the given title', () => {
+      const actual = notes.readNotes('title', fileName);
+      const expected = {title: 'title', body: 'body'};
+      assert.deepEqual(actual, expected);
+    });
+  });
 });

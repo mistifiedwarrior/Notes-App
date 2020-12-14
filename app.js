@@ -39,7 +39,8 @@ yargs.command({
     },
   },
   handler() {
-    notes.removeNote(argv.title, fileName);
+    const result = notes.removeNote(argv.title, fileName);
+    console.log(result);
   },
 });
 
@@ -48,7 +49,8 @@ yargs.command({
   command: 'list',
   describe: 'Listing your notes',
   handler() {
-    notes.listNotes();
+    const result = notes.listNotes(fileName);
+    console.log(result);
   },
 });
 
@@ -64,7 +66,8 @@ yargs.command({
     },
   },
   handler(argv) {
-    notes.readNotes(argv.title);
+    const result = notes.readNotes(argv.title, fileName);
+    console.log(result);
   },
 });
 yargs.parse();
