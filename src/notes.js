@@ -1,5 +1,4 @@
 const fs = require('fs');
-const chalk = require('chalk');
 
 //=============addNotes====================
 const addNote = (title, body, filename) => {

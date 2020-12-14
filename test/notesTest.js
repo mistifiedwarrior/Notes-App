@@ -60,5 +60,11 @@ describe('notesTest', () => {
       const expected = {title: 'title', body: 'body'};
       assert.deepEqual(actual, expected);
     });
+
+    it('Should read the notes of the given title', () => {
+      const actual = notes.readNotes('titled', fileName);
+      const expected = 'Notes Not Found';
+      assert.equal(actual, expected);
+    });
   });
 });
