@@ -1,6 +1,7 @@
 const {argv} = require('yargs');
 const yargs = require('yargs');
-const notes = require('./notes.js');
+const notes = require('./src/notes');
+const fileName = `${__dirname}/notes.json`;
 
 yargs.version('1.1.0');
 
@@ -21,7 +22,8 @@ yargs.command({
     },
   },
   handler(argv) {
-    notes.addNote(argv.title, argv.body);
+    const result = notes.addNote(argv.title, argv.body, fileName);
+    console.log(result);
   },
 });
 

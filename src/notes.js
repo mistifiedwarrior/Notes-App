@@ -2,26 +2,30 @@ const fs = require('fs');
 const chalk = require('chalk');
 
 //=============addNotes====================
-const addNote = (title, body) => {
-  const notes = loadNotes();
+const addNote = (title, body, filename) => {
+  const notes = loadNotes(filename);
   const duplicateNote = notes.find((note) => note.title === title);
 
   if (!duplicateNote) {
     notes.push({title: title, body: body});
-    saveNotes(notes);
-    console.log(chalk.green.bold('Adding a new note'));
+    saveNotes(notes, filename);
+    return 'Adding a new note';
   } else {
-    console.log(chalk.red.inverse('note!! Title has already been taken'));
+    return 'note!! Title has already been taken';
   }
 };
 
-const saveNotes = (notes) => {
-  fs.writeFileSync('notes.json', JSON.stringify(notes));
+const saveNotes = (notes, filename) => {
+  fs.writeFileSync(filename, JSON.stringify(notes));
 };
 
-const loadNotes = () => {
+// const sum = (a, b) => {
+//   return a + b;
+// };
+
+const loadNotes = (filename) => {
   try {
-    const data = fs.readFileSync('notes.json');
+    const data = fs.readFileSync(filename);
     const dataJSON = data.toString();
     return JSON.parse(dataJSON);
   } catch (e) {
@@ -61,7 +65,8 @@ const readNotes = (title) => {
     console.log(chalk.inverse(note.title));
     console.log(chalk.green.inverse(note.body));
   } else {
-    console.log(chalk.red.bold('Note Not Found'));
+    console.log(chalk.red.bold('Notes Not Found'));
+    // return 'Notes not Found';
   }
 };
 
