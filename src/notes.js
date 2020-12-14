@@ -19,10 +19,6 @@ const saveNotes = (notes, filename) => {
   fs.writeFileSync(filename, JSON.stringify(notes));
 };
 
-// const sum = (a, b) => {
-//   return a + b;
-// };
-
 const loadNotes = (filename) => {
   try {
     const data = fs.readFileSync(filename);
@@ -34,17 +30,14 @@ const loadNotes = (filename) => {
 };
 
 //===============remove note============================
-const removeNote = (title) => {
-  const notes = loadNotes();
+const removeNote = (title, filename) => {
+  const notes = loadNotes(filename);
   const notesToKeep = notes.filter((note) => note.title !== title);
-  // const notesToKeep = notes.filter(function (note) {
-  //   return note.title !== title;
-  // });
   if (notes.length > notesToKeep.length) {
-    console.log(chalk.green.inverse('notes removed'));
-    saveNotes(notesToKeep);
+    saveNotes(notesToKeep, filename);
+    return 'notes removed';
   } else {
-    console.log(chalk.red.inverse('No Note Found!!'));
+    return 'No Note Found!!';
   }
 };
 

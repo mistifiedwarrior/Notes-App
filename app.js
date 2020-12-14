@@ -39,7 +39,7 @@ yargs.command({
     },
   },
   handler() {
-    notes.removeNote(argv.title);
+    notes.removeNote(argv.title, fileName);
   },
 });
 
