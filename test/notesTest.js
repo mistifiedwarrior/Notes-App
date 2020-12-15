@@ -61,7 +61,7 @@ describe('notesTest', () => {
       assert.deepEqual(actual, expected);
     });
 
-    it('Should read the notes of the given title', () => {
+    it('Should return Notes not Found if title is mismatched', () => {
       const actual = notes.readNotes('titled', fileName);
       const expected = 'Notes Not Found';
       assert.equal(actual, expected);
