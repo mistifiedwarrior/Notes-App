@@ -9,9 +9,8 @@ const addNote = (title, body, filename) => {
     notes.push({title: title, body: body});
     saveNotes(notes, filename);
     return 'Adding a new note';
-  } else {
-    return 'note!! Title has already been taken';
   }
+  return 'note!! Title has already been taken';
 };
 
 const saveNotes = (notes, filename) => {
@@ -19,13 +18,8 @@ const saveNotes = (notes, filename) => {
 };
 
 const loadNotes = (filename) => {
-  try {
-    const data = fs.readFileSync(filename);
-    const dataJSON = data.toString();
-    return JSON.parse(dataJSON);
-  } catch (e) {
-    return [];
-  }
+  const data = fs.readFileSync(filename, 'utf8');
+  return JSON.parse(data);
 };
 
 //===============remove note============================
@@ -35,9 +29,8 @@ const removeNote = (title, filename) => {
   if (notes.length > notesToKeep.length) {
     saveNotes(notesToKeep, filename);
     return 'notes removed';
-  } else {
-    return 'No Note Found!!';
   }
+  return 'No Note Found!!';
 };
 
 //===========================Listing Note=============
@@ -52,12 +45,7 @@ const listNotes = (filename) => {
 const readNotes = (title, filename) => {
   const notes = loadNotes(filename);
   const note = notes.find((note) => note.title === title);
-
-  if (note) {
-    return note;
-  } else {
-    return 'Notes Not Found';
-  }
+  return note || 'Notes Not Found';
 };
 
 module.exports = {
