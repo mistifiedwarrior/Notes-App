@@ -36,9 +36,7 @@ const removeNote = (title, filename) => {
 //===========================Listing Note=============
 const listNotes = (filename) => {
   const notes = loadNotes(filename);
-  return notes.map((note) => {
-    return note.title;
-  });
+  return notes.map((note) => note.title);
 };
 
 //============================READ Notes============================
@@ -48,9 +46,4 @@ const readNotes = (title, filename) => {
   return note || 'Notes Not Found';
 };
 
-module.exports = {
-  addNote: addNote,
-  removeNote: removeNote,
-  listNotes: listNotes,
-  readNotes: readNotes,
-};
+module.exports = {addNote, removeNote, listNotes, readNotes};
